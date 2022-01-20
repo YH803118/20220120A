@@ -23,7 +23,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("¿À¶óÅ¬ µå¶óÀÌ¹ö ¿¬°á");
+			System.out.println("ì˜¤ë¼í´ ë“±ë¡ ì„±ê³µ");
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -34,7 +34,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
-			System.out.println("¿À¶óÅ¬ ¿¬°á °´Ã¼ »ı¼º");
+			System.out.println("ì˜¤ë¼í´ ì—°ê²° ì„±ê³µ");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

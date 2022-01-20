@@ -20,6 +20,7 @@ public class Main extends Application{
 		ctr.setRoot(root);
 		
 		primaryStage.setScene(new Scene(root));
+		primaryStage.setTitle("Login");
 		primaryStage.show();
 		
 	}
