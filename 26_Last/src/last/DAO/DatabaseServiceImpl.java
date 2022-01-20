@@ -23,7 +23,11 @@ public class DatabaseServiceImpl implements DatabaseService{
 		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+<<<<<<< HEAD
 			System.out.println("오라클 등록 성공");
+=======
+			System.out.println("오라클 드라이버 연결");
+>>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -34,7 +38,11 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
+<<<<<<< HEAD
 			System.out.println("오라클 연결 성공");
+=======
+			System.out.println("오라클 연결 객체 생성");
+>>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
