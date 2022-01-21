@@ -31,13 +31,14 @@ public class LoginServiceImpl implements LoginService{
 			Stage memberShow = (Stage) root.getScene().getWindow();
 			
 			try {
-				memberShow.setScene(new Scene((Parent) loader.load()));
+				Parent loginRoot = loader.load();
+				memberShow.setScene(new Scene(loginRoot));
+				Controller ctr1 = loader.getController();
+				ctr1.setRoot(loginRoot);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			Controller ctr1 = loader.getController();
-			
 			memberShow.show();
 			return idChk.getText();
 		}
