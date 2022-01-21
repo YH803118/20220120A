@@ -1,5 +1,8 @@
 package last.service;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,24 +10,28 @@ import javafx.stage.Stage;
 import last.Controller;
 
 public class BoardServiceImpl implements BoardService{
-
+	CommonService cs = new CommonServiceImpl();
 	@Override
-	public void write(String id, Parent root) {
+	public void write(String id, ActionEvent ev) {
 		// TODO Auto-generated method stub
 		FXMLLoader loader = new FXMLLoader(
 				getClass().getResource("../BoardWrite.fxml"));
-		
-		Stage memberShow = (Stage) root.getScene().getWindow();
+		Parent p= null;
+		Stage stage = new Stage();
 		
 		try {
-			memberShow.setScene(new Scene((Parent) loader.load()));
-		} catch (Exception e) {
-			// TODO: handle exception
+			p=loader.load();
+			stage.setScene(new Scene(p));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Controller ctr1 = loader.getController();
+		Controller ctrl = loader.getController();
+		ctrl.setWrite(p);
+		cs.windowClose(ev);
 		
-		memberShow.show();
+		stage.setTitle("°Ô½ÃÆÇ");
+		stage.show();
 	}
 
 }
