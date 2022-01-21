@@ -24,13 +24,13 @@ fx:controller="last.Controller">
             <Label layoutX="48.0" layoutY="49.0" text="이름" />
             <Label layoutX="48.0" layoutY="95.0" text="아이디" />
             <Label layoutX="48.0" layoutY="139.0" text="비밀번호" />
-            <TextField layoutX="102.0" layoutY="45.0" prefHeight="23.0" prefWidth="137.0" />
-            <TextField layoutX="102.0" layoutY="91.0" />
-            <TextField layoutX="102.0" layoutY="135.0" />
+            <TextField fx:id="txtName" layoutX="102.0" layoutY="45.0" prefHeight="23.0" prefWidth="137.0" />
+            <TextField fx:id="txtId" layoutX="102.0" layoutY="91.0" />
+            <TextField fx:id="txtPw" layoutX="102.0" layoutY="135.0" />
             <Label layoutX="248.0" layoutY="139.0" text="비밀번호 확인" />
-            <TextField layoutX="324.0" layoutY="135.0" />
+            <TextField fx:id="chkPw" layoutX="324.0" layoutY="135.0" />
             <Button onAction="#membershipProc" layoutX="102.0" layoutY="212.0" mnemonicParsing="false" text="가입" />
-            <Button layoutX="296.0" layoutY="212.0" mnemonicParsing="false" text="취소" />
+            <Button onAction="#CancelProc" layoutX="296.0" layoutY="212.0" mnemonicParsing="false" text="취소" />
          </children></Pane>
    </children>
 </GridPane>

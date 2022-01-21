@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import last.Board;
+import last.UserInfo;
 
 public class DatabaseServiceImpl implements DatabaseService{
 
@@ -23,7 +25,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("¿À¶óÅ¬ µå¶óÀÌ¹ö ¿¬°á");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -34,7 +36,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
-			System.out.println("¿À¶óÅ¬ ¿¬°á °´Ã¼ »ý¼º");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -88,11 +90,11 @@ public class DatabaseServiceImpl implements DatabaseService{
 			int result = rs.getInt(1);
 			
 			if(result >=1) {
-				System.out.println("·Î±×ÀÎ¼º°ø");
+				System.out.println("ï¿½Î±ï¿½ï¿½Î¼ï¿½ï¿½ï¿½");
 				return true;
 			}
 			else {
-				System.out.println("·Î±×ÀÎ½ÇÆÐ");
+				System.out.println("ï¿½Î±ï¿½ï¿½Î½ï¿½ï¿½ï¿½");
 				return false;
 			}
 		} catch (Exception e) {
@@ -110,10 +112,10 @@ public class DatabaseServiceImpl implements DatabaseService{
 		try {
 			ppst = con.prepareStatement(sql);
 			
-			if(list == null || list.equals("Á¦¸ñ")) {
+			if(list == null || list.equals("ï¿½ï¿½ï¿½ï¿½")) {
 				ppst.setString(1, "title");
 			}
-			else if(list.equals("±Û¾´ÀÌ")) {
+			else if(list.equals("ï¿½Û¾ï¿½ï¿½ï¿½")) {
 				ppst.setString(1, "id");
 			}
 			ListView<String> listV = (ListView<String>) root.lookup("#boardListView");
@@ -133,5 +135,28 @@ public class DatabaseServiceImpl implements DatabaseService{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public boolean insertMembership(UserInfo u) 
+	{
+		// TODO Auto-generated method stub
+		
+		String sql = "insert into userInfo values(?,?,?)";
+		try {
+			ppst=con.prepareStatement(sql);
+			ppst.setString(1, u.getId());
+			ppst.setString(2, u.getPw());
+			ppst.setString(3, u.getName());
+			int result= ppst.executeUpdate();
+			if(result>=1) return true;
+			else return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+		
+		
 	
 }
