@@ -21,9 +21,7 @@ public class Main extends Application{
 		
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
-		System.out.println("%%########%%");
 	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
