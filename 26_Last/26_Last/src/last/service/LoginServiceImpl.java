@@ -2,6 +2,7 @@ package last.service;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import last.DAO.DatabaseServiceImpl;
 public class LoginServiceImpl implements LoginService{
 
 	DatabaseService db = new DatabaseServiceImpl();
+	CommonService cs = new CommonServiceImpl();
 
 	@Override
 	public String login(Parent root) {
@@ -63,6 +65,28 @@ public class LoginServiceImpl implements LoginService{
 		ctrl.setMembership(p);
 		
 		stage.setTitle("�쉶�썝媛��엯");
+		stage.show();
+		
+	}
+
+	@Override
+	public void logout(ActionEvent ev) {
+		FXMLLoader loader = new  FXMLLoader(getClass().getResource("../BoardMain.fxml")) ;
+		Parent p= null;
+		Stage stage = new Stage();
+		
+		try {
+			p=loader.load();
+			stage.setScene(new Scene(p));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Controller ctrl = loader.getController();
+		ctrl.setRoot(p);
+		cs.windowClose(ev);
+		
+		stage.setTitle("게시판");
 		stage.show();
 		
 	}
