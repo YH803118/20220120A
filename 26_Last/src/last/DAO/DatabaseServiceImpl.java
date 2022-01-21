@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("오라클 드라이버 연결");
+			System.out.println("����Ŭ ����̹� ����");
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -35,7 +36,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
-			System.out.println("오라클 연결 객체 생성");
+			System.out.println("����Ŭ ���� ��ü ����");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -89,11 +90,11 @@ public class DatabaseServiceImpl implements DatabaseService{
 			int result = rs.getInt(1);
 			
 			if(result >=1) {
-				System.out.println("로그인성공");
+				System.out.println("�α��μ���");
 				return true;
 			}
 			else {
-				System.out.println("로그인실패");
+				System.out.println("�α��ν���");
 				return false;
 			}
 		} catch (Exception e) {
@@ -111,10 +112,10 @@ public class DatabaseServiceImpl implements DatabaseService{
 		try {
 			ppst = con.prepareStatement(sql);
 			
-			if(list == null || list.equals("제목")) {
+			if(list == null || list.equals("����")) {
 				ppst.setString(1, "title");
 			}
-			else if(list.equals("글쓴이")) {
+			else if(list.equals("�۾���")) {
 				ppst.setString(1, "id");
 			}
 			ListView<String> listV = (ListView<String>) root.lookup("#boardListView");
@@ -134,11 +135,28 @@ public class DatabaseServiceImpl implements DatabaseService{
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
-	public boolean insertMembership(UserInfo u) {
+	public boolean insertMembership(UserInfo u) 
+	{
 		// TODO Auto-generated method stub
+		
+		String sql = "insert into userInfo values(?,?,?)";
+		try {
+			ppst=con.prepareStatement(sql);
+			ppst.setString(1, u.getId());
+			ppst.setString(2, u.getPw());
+			ppst.setString(3, u.getName());
+			int result= ppst.executeUpdate();
+			if(result>=1) return true;
+			else return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
+		
+		
 	
 }
