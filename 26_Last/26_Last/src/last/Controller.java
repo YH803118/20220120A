@@ -17,9 +17,10 @@ import last.service.SearchService;
 import last.service.SearchServiceImpl;
 
 public class Controller {
-	public Parent root;
-	public Parent membership;
+	private Parent root;
+	private Parent membership;
 	private Parent write;
+	
 	private DatabaseService db;
 	private LoginService ls;
 	private SearchService ss;
@@ -47,6 +48,7 @@ public class Controller {
 	}
 	
 	public void setWrite(Parent write) {
+		// TODO Auto-generated method stub
 		this.write = write;
 	}
 	
@@ -78,7 +80,7 @@ public class Controller {
 	}
 	// ±€ ¿˙¿Â
 	public void save() {
-		bs.save(root, id);
+		bs.save(write, id);
 	}
 	
 	public void notice() {

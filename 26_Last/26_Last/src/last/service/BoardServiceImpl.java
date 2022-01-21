@@ -2,7 +2,6 @@ package last.service;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,12 +27,12 @@ public class BoardServiceImpl implements BoardService{
 		try {
 			p=loader.load();
 			stage.setScene(new Scene(p));
+			Controller ctrl = loader.getController();
+			ctrl.setWrite(p);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Controller ctrl = loader.getController();
-		ctrl.setWrite(p);
 		
 		stage.setTitle("°Ô½ÃÆÇ");
 		stage.show();

@@ -19,8 +19,6 @@ public class DatabaseServiceImpl implements DatabaseService{
 	private PreparedStatement ppst = null;
 	private ResultSet rs = null;
 	private String url, user, pass;
-	private int boardNum=0;
-	
 	public DatabaseServiceImpl() {
 		
 		try {			   
@@ -158,15 +156,23 @@ public class DatabaseServiceImpl implements DatabaseService{
 	@Override
 	public void insertBoard(String id, String title, String content) {
 		// TODO Auto-generated method stub
-		boardNum++;
+		
+		String boardNumSql = "select count(*) from board";
+		
 		String sql = "insert into board values(?,?,?,?)";
 		try {
+			
+			ppst=con.prepareStatement(boardNumSql);
+			int boardNum = ppst.executeUpdate();
+			ppst.close();			
+			System.out.println(boardNum);
 			ppst=con.prepareStatement(sql);
 			ppst.setInt(1, boardNum);
 			ppst.setString(2, id);
 			ppst.setString(3, title);
 			ppst.setString(4, content);
 			int result= ppst.executeUpdate();
+			
 			if(result>=1) System.out.println("¼º°ø");
 			ppst.close();
 		} catch (SQLException e) {
