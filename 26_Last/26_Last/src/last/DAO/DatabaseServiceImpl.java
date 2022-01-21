@@ -164,6 +164,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 			
 			ppst=con.prepareStatement(boardNumSql);
 			int boardNum = ppst.executeUpdate();
+			System.out.println(ppst);
 			ppst.close();			
 			System.out.println(boardNum);
 			ppst=con.prepareStatement(sql);
