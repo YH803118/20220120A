@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService{
 	DatabaseService db = new DatabaseServiceImpl();
 	
 	@Override
-	public void write(String id, ActionEvent ev) {
+	public void write(String id) {
 		// TODO Auto-generated method stub
 		FXMLLoader loader = new FXMLLoader(
 				getClass().getResource("../BoardWrite.fxml"));
@@ -33,8 +33,7 @@ public class BoardServiceImpl implements BoardService{
 			e.printStackTrace();
 		}
 		Controller ctrl = loader.getController();
-//		ctrl.setWrite(p);
-		cs.windowClose(ev);
+		ctrl.setWrite(p);
 		
 		stage.setTitle("°Ô½ÃÆÇ");
 		stage.show();

@@ -19,6 +19,7 @@ import last.service.SearchServiceImpl;
 public class Controller {
 	public Parent root;
 	public Parent membership;
+	private Parent write;
 	private DatabaseService db;
 	private LoginService ls;
 	private SearchService ss;
@@ -45,12 +46,11 @@ public class Controller {
 		cb.getItems().addAll("제목","글쓴이");
 	}
 	
-	public void setWrite(Parent root) {
-		this.root = root;
+	public void setWrite(Parent write) {
+		this.write = write;
 	}
 	
-	public void setMembership(Parent membership)
-	{
+	public void setMembership(Parent membership){
 		this.membership=membership;
 	}
 	
@@ -73,8 +73,8 @@ public class Controller {
 	}
 	
 	// 글쓰기 창열기
-	public void write(ActionEvent e) {
-		bs.write(id, e);
+	public void write() {
+		bs.write(id);
 	}
 	// 글 저장
 	public void save() {
