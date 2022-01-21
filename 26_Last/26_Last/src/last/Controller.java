@@ -1,9 +1,12 @@
 package last;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import last.DAO.DatabaseService;
 import last.DAO.DatabaseServiceImpl;
+import last.service.CommonService;
+import last.service.CommonServiceImpl;
 import last.service.LoginService;
 import last.service.LoginServiceImpl;
 import last.service.MembershipService;
@@ -18,12 +21,14 @@ public class Controller {
 	private LoginService ls;
 	private SearchService ss;
 	private MembershipService ms;
+	private CommonService cs;
 	
 	public Controller(){
 		db = new DatabaseServiceImpl();
 		ls = new LoginServiceImpl();
 		ss = new SearchServiceImpl();
 		ms = new MembershipServiceImpl();
+		cs = new CommonServiceImpl();
 	}
 	
 	public void setRoot(Parent root) {
@@ -72,5 +77,10 @@ public class Controller {
 	public void OpenMembership()
 	{
 		ls.OpenMembership();
+	}
+	
+	public void CancelProc(ActionEvent e)
+	{
+		cs.windowClose(e);
 	}
 }
