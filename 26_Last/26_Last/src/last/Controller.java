@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import last.DAO.DatabaseService;
 import last.DAO.DatabaseServiceImpl;
+import last.service.BoardService;
+import last.service.BoardServiceImpl;
 import last.service.CommonService;
 import last.service.CommonServiceImpl;
 import last.service.LoginService;
@@ -21,13 +23,16 @@ public class Controller {
 	private LoginService ls;
 	private SearchService ss;
 	private MembershipService ms;
-	private CommonService cs;
+	private BoardService bs;
 	
+	private String id;
+	private CommonService cs;
 	public Controller(){
 		db = new DatabaseServiceImpl();
 		ls = new LoginServiceImpl();
 		ss = new SearchServiceImpl();
 		ms = new MembershipServiceImpl();
+		bs = new BoardServiceImpl();
 		cs = new CommonServiceImpl();
 	}
 	
@@ -36,7 +41,7 @@ public class Controller {
 		this.root=root;
 		db.listView(root);
 		ComboBox<String> cb = (ComboBox<String>) root.lookup("#list");
-		cb.getItems().addAll("ï¿½ï¿½ï¿½ï¿½","ï¿½Û¾ï¿½ï¿½ï¿½");
+		cb.getItems().addAll("Á¦¸ñ","±Û¾´ÀÌ");
 	}
 	
 	public void setMembership(Parent membership)
@@ -45,7 +50,7 @@ public class Controller {
 	}
 	
 	public void login() {
-		ls.login(root);
+		id = ls.login(root);
 	}
 	
 	public void listClick() {
@@ -62,8 +67,9 @@ public class Controller {
 		setRoot(root);
 	}
 	
+	// ±Û¾²±â
 	public void write() {
-		
+//		bs.write(id, root);
 	}
 	
 	public void notice() {
