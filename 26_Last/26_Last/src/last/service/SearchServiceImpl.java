@@ -15,9 +15,8 @@ public class SearchServiceImpl implements SearchService{
 		// TODO Auto-generated method stub
 		TextField searchText = (TextField) root.lookup("#searchText");
 		ComboBox<String> search = (ComboBox<String>) root.lookup("#list");
-		System.out.println("$$$$$$$$$$$$$");
+		
 		db.search(searchText.getText(), search.getValue(), root);
-		System.out.println("@@@@@@@@@@@@@@");
 	}
 
 }
