@@ -23,11 +23,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-<<<<<<< HEAD
-			System.out.println("오라클 등록 성공");
-=======
 			System.out.println("오라클 드라이버 연결");
->>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -38,11 +34,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
-<<<<<<< HEAD
-			System.out.println("오라클 연결 성공");
-=======
 			System.out.println("오라클 연결 객체 생성");
->>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -53,8 +45,7 @@ public class DatabaseServiceImpl implements DatabaseService{
 	@Override
 	public void listView(Parent root) {
 		// TODO Auto-generated method stub
-		ListView<String> listV = new ListView<String>();
-		listV = (ListView<String>) root.lookup("#boardListView");
+		ListView<String> listV = (ListView<String>) root.lookup("#boardListView");
 		
 		List<String> list = new ArrayList<String>();
 		
@@ -64,7 +55,6 @@ public class DatabaseServiceImpl implements DatabaseService{
 			
 			ppst = con.prepareStatement(sql);
 			rs = ppst.executeQuery();
-			System.out.println("##################");
 			while(rs.next()) {
 				Board b = new Board();
 				b.setNum(rs.getInt(1));
@@ -80,6 +70,72 @@ public class DatabaseServiceImpl implements DatabaseService{
 		}
 		
 		
+	}
+
+	@Override
+	public boolean login(String id, String pw) {
+		// TODO Auto-generated method stub
+		
+		String sql = "select count(*) from userInfo where id=? and pw=?";
+		
+		try {
+			ppst = con.prepareStatement(sql);
+			ppst.setString(1, id);
+			ppst.setString(2, pw);
+
+			rs = ppst.executeQuery();
+			
+			rs.next();
+			int result = rs.getInt(1);
+			
+			if(result >=1) {
+				System.out.println("로그인성공");
+				return true;
+			}
+			else {
+				System.out.println("로그인실패");
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public void search(String search, String list, Parent root) {
+		// TODO Auto-generated method stub
+		String sql = "select * from board where ? IN (?)";
+		try {
+			ppst = con.prepareStatement(sql);
+			
+			if(list == null || list.equals("제목")) {
+				ppst.setString(1, "title");
+				ppst.setString(2, search);
+			}
+			else if(list.equals("글쓴이")) {
+				ppst.setString(1, "id");
+				ppst.setString(2, search);
+			}
+			
+			ListView<String> listV = (ListView<String>) root.lookup("#boardListView");
+
+			rs = ppst.executeQuery();
+			while(rs.next()) {
+				Board b = new Board();
+				b.setNum(rs.getInt(1));
+				b.setTitle(rs.getString(3));
+				b.setId(rs.getString(2));
+				String listString = "\t"+b.getNum()+"\t\t"+b.getTitle()+"\t\t\t\t\t\t\t\t\t"+b.getId();
+				listV.getItems().add(listString);
+			}
+			ppst.close(); rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		System.out.println("$$$%%%%%%%%");
 	}
 	
 }
