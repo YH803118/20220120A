@@ -1,4 +1,4 @@
-ppackage last.DAO;
+package last.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import last.Board;
+import last.UserInfo;
 
 public class DatabaseServiceImpl implements DatabaseService{
 
@@ -132,6 +133,12 @@ public class DatabaseServiceImpl implements DatabaseService{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean insertMembership(UserInfo u) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

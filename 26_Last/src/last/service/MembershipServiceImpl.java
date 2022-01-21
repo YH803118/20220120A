@@ -1,4 +1,4 @@
-ppackage last.service;
+package last.service;
 
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
