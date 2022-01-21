@@ -11,4 +11,6 @@ public interface DatabaseService {
 	public void search(String string, String string2, Parent root);
 
 	boolean insertMembership(UserInfo u);
+	
+	public void insertBoard(String id, String title, String content);
 }

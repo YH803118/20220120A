@@ -5,4 +5,5 @@ import javafx.scene.Parent;
 
 public interface BoardService {
 	public void write(String id, ActionEvent e);
+	public void save(Parent root, String id);
 }

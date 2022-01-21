@@ -72,8 +72,13 @@ public class Controller {
 		setRoot(root);
 	}
 	
+	// 글쓰기 창열기
 	public void write(ActionEvent e) {
 		bs.write(id, e);
+	}
+	// 글 저장
+	public void save() {
+		bs.save(root, id);
 	}
 	
 	public void notice() {

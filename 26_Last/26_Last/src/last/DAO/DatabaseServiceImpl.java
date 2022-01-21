@@ -19,13 +19,12 @@ public class DatabaseServiceImpl implements DatabaseService{
 	private PreparedStatement ppst = null;
 	private ResultSet rs = null;
 	private String url, user, pass;
+	private int boardNum=0;
 	
 	public DatabaseServiceImpl() {
 		
-		System.out.println("===========");
 		try {			   
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (Exception e) {
 		// TODO: handle exception
 			e.printStackTrace();
@@ -36,7 +35,6 @@ public class DatabaseServiceImpl implements DatabaseService{
 			pass = "oracle";
 			
 			con = DriverManager.getConnection(url,user,pass);
-			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -155,6 +153,26 @@ public class DatabaseServiceImpl implements DatabaseService{
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public void insertBoard(String id, String title, String content) {
+		// TODO Auto-generated method stub
+		boardNum++;
+		String sql = "insert into board values(?,?,?,?)";
+		try {
+			ppst=con.prepareStatement(sql);
+			ppst.setInt(1, boardNum);
+			ppst.setString(2, id);
+			ppst.setString(3, title);
+			ppst.setString(4, content);
+			int result= ppst.executeUpdate();
+			if(result>=1) System.out.println("¼º°ø");
+			ppst.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 		
