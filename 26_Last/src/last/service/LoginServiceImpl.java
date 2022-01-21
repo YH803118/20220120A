@@ -16,12 +16,12 @@ public class LoginServiceImpl implements LoginService{
 	DatabaseService db = new DatabaseServiceImpl();
 
 	@Override
-	public void login(Parent root) {
+	public String login(Parent root) {
 		// TODO Auto-generated method stub
 		TextField idChk = (TextField) root.lookup("#loginId");
 		TextField pwChk = (TextField) root.lookup("#loginPw");
 		
-		// �α��μ����� BoardMain_Login����
+		
 		if(db.login(idChk.getText(), pwChk.getText())) {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("../BoardMain_Login.fxml"));
@@ -29,19 +29,20 @@ public class LoginServiceImpl implements LoginService{
 			Stage memberShow = (Stage) root.getScene().getWindow();
 			
 			try {
-
 				memberShow.setScene(new Scene((Parent) loader.load()));
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
 			Controller ctr1 = loader.getController();
-
+			
 			memberShow.show();
+			return idChk.getText();
 		}
 		else {
-			
+			// alert
 		}
+		return null;
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class LoginServiceImpl implements LoginService{
 		Controller ctrl = loader.getController();
 		ctrl.setMembership(p);
 		
-		stage.setTitle("회원가입");
+		stage.setTitle("�쉶�썝媛��엯");
 		stage.show();
 		
 	}
