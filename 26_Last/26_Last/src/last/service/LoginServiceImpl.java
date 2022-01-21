@@ -25,17 +25,18 @@ public class LoginServiceImpl implements LoginService{
 		if(db.login(idChk.getText(), pwChk.getText())) {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("../BoardMain_Login.fxml"));
-			Parent load=null;
-			Stage memberShow = new Stage();
+			
+			Stage memberShow = (Stage) root.getScene().getWindow();
+			
 			try {
-				load = loader.load();
-				memberShow.setScene(new Scene(load));
+
+				memberShow.setScene(new Scene((Parent) loader.load()));
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
 			Controller ctr1 = loader.getController();
-			ctr1.setRoot(load);
+
 			
 			memberShow.show();
 		}
