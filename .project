@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 <<<<<<< HEAD
+	<name>git_workspace</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+=======
+<<<<<<< HEAD
 	<name>Last</name>
 	<comment></comment>
 	<projects>
@@ -22,6 +31,7 @@
 	<buildSpec>
 	</buildSpec>
 	<natures>
+>>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 >>>>>>> branch 'master' of https://github.com/YH803118/20220120A.git
 	</natures>
 </projectDescription>
