@@ -58,7 +58,7 @@
             <Button onAction="#search" mnemonicParsing="false" text="검색" />
          </children>
       </HBox>
-      <Button fx:id="membership" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="23.0" prefWidth="123.0" text="회원가입" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Button onAction="#OpenMembership" fx:id="membership" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="23.0" prefWidth="123.0" text="회원가입" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="70.0" />
          </GridPane.margin>
@@ -68,4 +68,3 @@
       <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
    </padding>
 </GridPane>
-
