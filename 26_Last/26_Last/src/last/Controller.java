@@ -69,7 +69,7 @@ public class Controller {
 	
 	// ±Û¾²±â
 	public void write() {
-//		bs.write(id, root);
+		bs.write(id, root);
 	}
 	
 	public void notice() {
