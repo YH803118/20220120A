@@ -70,8 +70,8 @@ public class Controller {
 		
 	}
 
-	public void logout() {
-		
+	public void logout(ActionEvent e) {
+		cs.windowClose(e);
 	}
 	
 	public void OpenMembership()
