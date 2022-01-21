@@ -69,7 +69,6 @@ public class DatabaseServiceImpl implements DatabaseService{
 			// TODO: handle exception
 		}
 		
-		
 	}
 
 	@Override
@@ -106,36 +105,33 @@ public class DatabaseServiceImpl implements DatabaseService{
 	@Override
 	public void search(String search, String list, Parent root) {
 		// TODO Auto-generated method stub
-		String sql = "select * from board where ? IN (?)";
+		String sql = "select * from board where ? like '%"+search
+				+ "%'";
 		try {
 			ppst = con.prepareStatement(sql);
 			
 			if(list == null || list.equals("제목")) {
 				ppst.setString(1, "title");
-				ppst.setString(2, search);
 			}
 			else if(list.equals("글쓴이")) {
 				ppst.setString(1, "id");
-				ppst.setString(2, search);
 			}
-			
 			ListView<String> listV = (ListView<String>) root.lookup("#boardListView");
 
 			rs = ppst.executeQuery();
+			
 			while(rs.next()) {
 				Board b = new Board();
 				b.setNum(rs.getInt(1));
 				b.setTitle(rs.getString(3));
 				b.setId(rs.getString(2));
-				String listString = "\t"+b.getNum()+"\t\t"+b.getTitle()+"\t\t\t\t\t\t\t\t\t"+b.getId();
-				listV.getItems().add(listString);
+				listV.getItems().add("\t"+b.getNum()+"\t\t"+b.getTitle()+"\t\t\t\t\t\t\t\t\t"+b.getId());
 			}
 			ppst.close(); rs.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		System.out.println("$$$%%%%%%%%");
 	}
 	
 }

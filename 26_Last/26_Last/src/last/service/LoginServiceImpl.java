@@ -35,7 +35,6 @@ public class LoginServiceImpl implements LoginService{
 			}
 			Controller ctr1 = loader.getController();
 
-			
 			memberShow.show();
 		}
 		else {
