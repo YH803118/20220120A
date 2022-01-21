@@ -1,57 +1,61 @@
 package last;
 
-import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import last.DAO.DatabaseService;
 import last.DAO.DatabaseServiceImpl;
-import last.service.CommonService;
-import last.service.CommonServiceImpl;
 import last.service.LoginService;
 import last.service.LoginServiceImpl;
-import last.service.MemberService;
-import last.service.MemberServiceImpl;
+import last.service.SearchService;
+import last.service.SearchServiceImpl;
 
 public class Controller {
-	private Parent loginForm;
-	private Parent membershipForm;
 	public Parent root;
 	private DatabaseService db;
 	private LoginService ls;
-	private MemberService ms;
-	private CommonServiceImpl cs;
+	private SearchService ss;
 	
 	public Controller(){
 		db = new DatabaseServiceImpl();
 		ls = new LoginServiceImpl();
-		cs = new CommonServiceImpl();
-		ms = new MemberServiceImpl();
+		ss = new SearchServiceImpl();
 	}
 	
 	public void setRoot(Parent root) {
 		// TODO Auto-generated method stub
 		this.root=root;
 		db.listView(root);
+		ComboBox<String> cb = (ComboBox<String>) root.lookup("#list");
+		cb.getItems().addAll("Á¦¸ñ","±Û¾´ÀÌ");
+	}
+	
+	public void login() {
+		ls.login(root);
 	}
 	
 	public void listClick() {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$");
 	}
 	
-	
-	public void LoginProc() {
-		ls.LoginProc(loginForm);
+	public void membership() {
+		
 	}
 	
-	public void OpenMemberShipForm() {
-		ls.OpenMemberShipForm();
+	// °Ë»ö
+	public void search() {
+		ss.search(root);
+		setRoot(root);
 	}
 	
-	public void CancelProc(ActionEvent event) {
-		cs.windowClose(event);
+	public void write() {
+		
 	}
 	
-	public void MembershipProc() {
-		ms.MembershipProc(membershipForm);
+	public void notice() {
+		
 	}
-	
+
+	public void logout() {
+		
+	}
 }
