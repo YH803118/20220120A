@@ -6,19 +6,24 @@ import last.DAO.DatabaseService;
 import last.DAO.DatabaseServiceImpl;
 import last.service.LoginService;
 import last.service.LoginServiceImpl;
+import last.service.MembershipService;
+import last.service.MembershipServiceImpl;
 import last.service.SearchService;
 import last.service.SearchServiceImpl;
 
 public class Controller {
 	public Parent root;
+	public Parent membership;
 	private DatabaseService db;
 	private LoginService ls;
 	private SearchService ss;
+	private MembershipService ms;
 	
 	public Controller(){
 		db = new DatabaseServiceImpl();
 		ls = new LoginServiceImpl();
 		ss = new SearchServiceImpl();
+		ms = new MembershipServiceImpl();
 	}
 	
 	public void setRoot(Parent root) {
@@ -26,7 +31,12 @@ public class Controller {
 		this.root=root;
 		db.listView(root);
 		ComboBox<String> cb = (ComboBox<String>) root.lookup("#list");
-		cb.getItems().addAll("Á¦¸ñ","±Û¾´ÀÌ");
+		cb.getItems().addAll("ï¿½ï¿½ï¿½ï¿½","ï¿½Û¾ï¿½ï¿½ï¿½");
+	}
+	
+	public void setMembership(Parent membership)
+	{
+		this.membership=membership;
 	}
 	
 	public void login() {
@@ -37,11 +47,11 @@ public class Controller {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$");
 	}
 	
-	public void membership() {
-		
+	public void membershipProc() {
+		ms.membership(membership);
 	}
 	
-	// °Ë»ö
+	// ï¿½Ë»ï¿½
 	public void search() {
 		ss.search(root);
 		setRoot(root);
@@ -57,5 +67,10 @@ public class Controller {
 
 	public void logout() {
 		
+	}
+	
+	public void OpenMembership()
+	{
+		ls.OpenMembership();
 	}
 }

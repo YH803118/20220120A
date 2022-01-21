@@ -1,5 +1,7 @@
 package last.service;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +21,7 @@ public class LoginServiceImpl implements LoginService{
 		TextField idChk = (TextField) root.lookup("#loginId");
 		TextField pwChk = (TextField) root.lookup("#loginPw");
 		
-		// ·Î±×ÀÎ¼º°ø½Ã BoardMain_LoginÀ¸·Î
+		// ï¿½Î±ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ BoardMain_Loginï¿½ï¿½ï¿½ï¿½
 		if(db.login(idChk.getText(), pwChk.getText())) {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("../BoardMain_Login.fxml"));
@@ -40,6 +42,28 @@ public class LoginServiceImpl implements LoginService{
 		else {
 			
 		}
+	}
+
+	@Override
+	public void OpenMembership() {
+
+		FXMLLoader loader = new  FXMLLoader(getClass().getResource("../MemberShip.fxml")) ;
+		Parent p= null;
+		Stage stage = new Stage();
+		
+		try {
+			p=loader.load();
+			stage.setScene(new Scene(p));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Controller ctrl = loader.getController();
+		ctrl.setMembership(p);
+		
+		stage.setTitle("íšŒì›ê°€ì…");
+		stage.show();
+		
 	}
 
 }
